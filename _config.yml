@@ -1,52 +1,48 @@
-# Set theme
-remote_theme: daviddarnes/alembic
+title: rand(thoughts)
+description: Random thoughts and rants about things I barely understand
+author: Guillaume Malette
+github: https://github.com/gmalette
+about: I'm a web developer by day, struggling to understand Ruby.
+disqus_shortname:
+google_analytics: UA-131111846-1
+avatar_url: /static/img/avatar.jpg
 
-# File excludes
-exclude:
-- README.md
-- Gemfile
-- Gemfile.lock
+enableTags: true
+tagarray: []
 
-# Set plugins
-plugins:
-- jekyll-sitemap
-- jekyll-mentions
-- jekyll-paginate
-- jekyll-seo-tag
-- jekyll-redirect-from
-- jekyll-default-layout
-- jekyll-feed
-- jemoji
-- jekyll-remote-theme
-
-# Site settings
-url: 'gmalette.github.io'
-baseurl: ''
-title: 'rand(thoughts)'
-description: 'I blog about things I barely understand'
-permalink: pretty
-logo: 'https://en.gravatar.com/userimage/20440367/bba17b7b0242d2574ca88a9605ec3e16.jpeg?s=100'
-
-# Pagination
-paginate: 5
-paginate_path: blog/page:num
-
-# Header nav
-navigation_header:
-  # Home: /
-  # About: /about/
-  Blog: /blog/
-
-# Footer nav
-navigation_footer:
-  Back to top: "#top"
-
-# Collections
 collections:
-  posts:
-    title: Posts
+  project:
     output: true
-    description: "My thoughts and ideas"
-    feature_text: |
-      Welcome to my blog
-    feature_image: "https://picsum.photos/2560/600?image=866"
+    permalink: /project/:path/
+
+social:
+    - icon: fa-twitter
+      link: "https://twitter.com/gmalette"
+    - icon: fa-github
+      link: "https://github.com/gmalette"
+
+share:
+  twitter_username: gmalette
+
+urls:
+    - text: About Me
+      url: /about/
+    - text: XML Feed
+      url: /feed.xml
+
+url: "https://gmalette.github.io"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
+markdown: kramdown
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ['development']

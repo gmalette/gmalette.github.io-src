@@ -1,6 +1,9 @@
 ---
 layout: page
-title: About this website
+title: About
+permalink: /about/
 ---
 
-I'm not sure yet what this website is about, but I'm sure I'll work it out soon.
+I am freelance developer. Currently doing more in backend, focused in Python and Django.
+
+email: agus[at]python.web.id
