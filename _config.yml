@@ -1,44 +1,41 @@
-title: rand(thoughts)
-description: Random thoughts and rants about things I barely understand
-author: Guillaume Malette
-github: https://github.com/gmalette
-about: I'm a web developer by day, struggling to understand Ruby.
+title: "Guillaume's Horrible Code-Along Blog"
+description: "Random thoughts and rants about things I strive understand"
+author: "Guillaume Malette"
+github: "https://github.com/gmalette"
+about: "I'm a web developer by day, trying to understand Ruby."
 disqus_shortname:
-google_analytics: UA-131111846-1
-avatar_url: /static/img/avatar.jpg
+google_analytics: "UA-131111846-1"
+avatar_url: "http://gravatar.com/avatar/944e45061dc58d6d996c2b605cce6c09?s=150"
 
 enableTags: true
 tagarray: []
 
-collections:
-  project:
-    output: true
-    permalink: /project/:path/
-
 social:
-    - icon: fa-twitter
+    - icon: "fa-twitter"
       link: "https://twitter.com/gmalette"
-    - icon: fa-github
+    - icon: "fa-github"
       link: "https://github.com/gmalette"
 
 share:
-  twitter_username: gmalette
+  twitter_username: "gmalette"
 
 urls:
-    - text: About Me
-      url: /about/
-    - text: XML Feed
-      url: /feed.xml
+    - text: "Blog Repo"
+      url: "https://github.com/gmalette/gmalette.github.io"
+    - text: "XML Feed"
+      url: "/feed.xml"
 
 url: "https://gmalette.github.io"
 baseurl: ""
 paginate: 20
 per_page: 20
 paginate_path: "/page/:num/"
-markdown: kramdown
-gems:
-  - jekyll-paginate
-  - jekyll-gist
+markdown: "kramdown"
+highlighter: "rouge"
+plugins:
+  - "jekyll-paginate"
+  - "jekyll-gist"
+  - "rouge"
 
 compress_html:
   clippings: all
