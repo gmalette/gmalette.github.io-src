@@ -105,6 +105,9 @@ div.col-sm-3 img.profile-avatar {
   margin-left: auto;
   margin-right: auto;
 }
+.post {
+  margin-bottom: 30px;
+}
 
 /* Pagination */
 .PageNavigation {
@@ -152,6 +155,9 @@ div.col-sm-3 img.profile-avatar {
   padding: 10px 10px 5px;
   border-top: 1px solid #f0f0f0;
   border-bottom: 1px solid #f0f0f0;
+}
+.twitter-share-button {
+  margin-top: 2px;
 }
 .post-content img,
 .content img {

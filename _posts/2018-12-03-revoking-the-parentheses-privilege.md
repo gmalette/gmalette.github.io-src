@@ -3,7 +3,7 @@ layout: post
 title: Revoking the (Parentheses) Privilege
 date: 2018-12-03 21:00:00 +0400
 categories:
-- General
+- Ruby
 ---
 
 For years, Rubyists (including where I work) have enjoyed the privilege of omitting parenthesis around method call arguments. Last week, we merged a pull request to our style guide revoking that privilege: parenthesis will become mandatory for all method calls with arguments.
