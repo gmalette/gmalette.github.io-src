@@ -10,11 +10,15 @@ categories:
 
 Recently I was called out. I hypothesized that some bad patterns in Ruby are caused by developers misunderstanding Ruby's Object Model, but I had not provided any learning resources. In fact, I couldn't find anything satisfying, so I decided to write this post.
 
+**Edit:** I was shown existing resources:
+- [All I'd Wanted to Know about Ruby's Object Model Starting Out...and Mooar!!!](https://www.youtube.com/watch?v=268UU4EpTew) in which Jun Qi Tan explains what I tried to in this post, in a much more eloquent talk.
+- [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html) by Jeff Kreeftmeijer in the excellent Ruby Magic series.
+
 ---
 
 This post is aimed at developers familiar with Ruby and Object Oriented Programming. I'll assume you have some understanding of what objects and classes are, and that you can read Ruby code without commentary. If you want to learn more about Ruby, or if this post has you itching for more, I must recommend [Ruby Under The Microscope](http://patshaughnessy.net/ruby-under-a-microscope) by Pat Shaughnessy. Chapter 5 goes in-depth in the data structures the Ruby VM (MRI) uses for objects and classes.
 
-Without further ado, let's get started.
+If you'd rather skip the wall of text, visit the [**TL; DR**](#conclusion-or-tl-dr). Otherwise, let's get started!
 
 ## Objects
 
@@ -225,7 +229,7 @@ dora.number_of_toes
 # => 22
 ```
 
-Earlier in this post, I said that objects are the combination of state and a class. This is slightly less than accurate. In fact, two objects instantiated from the same class, are not necessarily of the same type. This is (you probably guessed it from the section title) because of the singleton class. The truth is, every object in Ruby possesses it's very own class, of which it is a singleton. You may also have seen "metaclass" or "eigenclass", both terms used to describe the singleton class, which shouldn't be used anymore in Ruby. In our code, `dora` and `coco` don't have the same class, which explains why `coco` does not have the `number_of_toes` method:
+Earlier in this post, I said that objects are the combination of state and a class. This is slightly less than accurate. In fact, two objects instantiated from the same class, are not necessarily of the same type. This is (you probably guessed it from the section title) because of the singleton class. The truth is, every object in Ruby possesses it's very own class, of which it is a singleton. You may also have seen "eigenclass"—another word for singleton class—, or "metaclass", which is specifically a Class object's singleton class. In our code, `dora` and `coco` don't have the same class, which explains why `coco` does not have the `number_of_toes` method:
 
 ```ruby
 coco.number_of_toes
@@ -511,7 +515,7 @@ M.singleton_class.ancestors
 
 As you can see, while `L` appears in `M`'s ancestors, `Extended` does not, and while `L`'s singleton class appears in `M`'s singleton class's ancestors, `Included` does not.
 
-## Conclusion
+## Conclusion (or TL; DR)
 
 Here's what I hope you take away from this post:
 1. Objects are the composition of state and a reference to a class.
