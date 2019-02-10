@@ -10,7 +10,7 @@ categories:
 
 Recently I was called out. I hypothesized that some bad patterns in Ruby are caused by developers misunderstanding Ruby's Object Model, but I had not provided any learning resources. In fact, I couldn't find anything satisfying, so I decided to write this post.
 
-**Edit:** I was shown existing resources:
+**Edit:** I've been sent other resources about Ruby's Object Model:
 - [All I'd Wanted to Know about Ruby's Object Model Starting Out...and Mooar!!!](https://www.youtube.com/watch?v=268UU4EpTew) in which Jun Qi Tan explains what I tried to in this post, in a much more eloquent talk.
 - [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html) by Jeff Kreeftmeijer in the excellent Ruby Magic series.
 
