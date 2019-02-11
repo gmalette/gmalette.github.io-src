@@ -83,7 +83,7 @@ The ancestor chain is a linked list. For `Cat`, it looks like this:
 
 ![Diagram of Cat's ancestor chain](/static/img/posts/2019-02-01-the-ruby-object-model/simple-ancestor-chain.svg)
 
-Whenever you call the `pet` method on `coco`, the Ruby VM will find the behaviour in `coco`'s class (`Cat`) ancestor chain, from left to right: starting with `Cat`, then `Animal`, and so on, until the method is found. When calling `super` within that method, Ruby would find the next ancestor defining a behaviour for the `pet` method, and invoke it, in this case, the one defined in `Animal`.
+Whenever you call the `pet` method on `coco`, the Ruby VM will find the behaviour in `coco`'s class's ancestor chain (`Cat`'s, that is), from left to right: starting with `Cat`, then `Animal`, and so on, until the method is found. When calling `super` within that method, Ruby would find the next ancestor defining a behaviour for the `pet` method, and invoke it, in this case, the one defined in `Animal`.
 
 ![Diagram of coco and the Cat, with Cat showing methods](/static/img/posts/2019-02-01-the-ruby-object-model/fig-2-coco-ancestors.svg)
 
@@ -109,7 +109,7 @@ Cat.method(:new).owner
 # => Class
 ```
 
-The default behaviour of the `new` method is to return a new object whose class is the receiver–instantiate the class.
+The default behaviour of the `new` method is to return a new object: it instantiates the class.
 
 ```ruby
 coco = Cat.new("coco")
@@ -117,7 +117,7 @@ coco.class
 # => Cat
 ```
 
-While this method can be changed in by any class in the ancestor chain, this privilege is rarely abused and is frowned upon, but one _could_ do it.
+While this method can be changed in by any class in the ancestor chain, this privilege is rarely abused and is frowned upon, but know that one _could_ do it.
 
 For some, it may be surprising that the `Class` class is a subclass of the `Module` class, meaning that all class objects are also Modules. In the next section, we will talk about modules; remember that many things will also apply to class objects.
 
@@ -136,13 +136,13 @@ module Quadruped
 end
 ```
 
-Modules, like classes, have two facets: they are values (and objects), and they can define behaviour for other objects. Unlike class objects however, Module objects do not have a method named `new`, and cannot be instantiated directly.
+Modules, like classes, have two facets: they are values (thus, objects), and they can define behaviour for other objects. Unlike class objects however, Module objects do not have a method named `new`, and cannot be instantiated directly.
 
 ```ruby
 Quadruped.new
-Traceback (most recent call last):
-        1: from (irb)
-NameError (undefined method `new' for class `Module')
+# Traceback (most recent call last):
+#         1: from (irb)
+# NameError (undefined method `new' for class `Module')
 ```
 
 Since `Module`s cannot be instantiated nor subclassed, they need another way to be used as an object's behaviour. This is done by using the `include`, `prepend`, and `extend` methods on Module objects (and on class objects!). I'll describe `include` and `prepend` now, but keep `extend` for later.
@@ -233,9 +233,9 @@ Earlier in this post, I said that objects are the combination of state and a cla
 
 ```ruby
 coco.number_of_toes
-Traceback (most recent call last):
-        1: from (irb)
-NoMethodError (undefined method `number_of_toes' for #<Cat:0x00007fe5201b0f78 @name="coco">)
+# Traceback (most recent call last):
+#         1: from (irb)
+# NoMethodError (undefined method `number_of_toes' for #<Cat:0x00007fe5201b0f78 @name="coco">)
 ```
 
 As such, the "true" class of an object is it's singleton class.
@@ -261,7 +261,7 @@ The following diagram shows the hierarchy of both `coco` and `dora`, with their 
 
 Astute readers will correctly understand that, in many cases, an object's singleton class can be elided by the virtual machine. In fact, if the VM _did not_ elide most of them, no Ruby program would be able to run. This is because **class objects also have singleton classes**, and Singleton classes are also class objects, which themselves also have singleton classes... and so on recursively. In our previous example, `coco`'s singleton class can be elided since it neither defines methods, nor has state.
 
-Methods defined on a class object's singleton class are sometimes erroneously called "static functions". This nomenclature is misleading; we should avoid it. Using it sets us up for expectations the Ruby VM cannot meet. The reason is, they are not functions, they are behaviour defined on the class object's singleton class, and the class object is like all other objects: it has state. Additionally, constants in Ruby are _not truly constant_, so these methods are not static either.
+Methods defined on a class object's singleton class are sometimes erroneously called "static functions". This nomenclature is misleading; we should avoid it. Using it sets us up for expectations the Ruby VM cannot meet. The reason is, they are not functions, they are nothing more than methods defined on a class object's singleton class. Additionally, constants in Ruby are _not truly constant_, so these methods are not static either.
 
 There are several ways to define methods on a class's singleton class.
 
@@ -306,7 +306,7 @@ Cat.are_the_best?
 # => true
 ```
 
-I didn't intend to talk about method visibility in this object model post, but let's just briefly go there. The reason for this unexpected behaviour is that `private` is not a keyword, it is a method. In this case, it will be received by `Cat`, allowing it to make any new method defined on it as private. `Cat`'s singleton class however, does not receive this method call. It is not aware that it should change the visibility of methods that will be defined.
+I didn't intend to talk about method visibility in this object model post, but let's just briefly go there. The reason for this unexpected behaviour is that `private` is not a keyword, it is a method. In this case, it will be received by `Cat`, allowing it to make any new method defined on it as private. `Cat`'s singleton class however, does not receive this method call to `private`. As a result, it is not aware that it should change the visibility of methods that will be defined.
 
 Had we used the `class << self` syntax instead, it would have worked as expected:
 
@@ -322,9 +322,9 @@ class Cat < Animal
 end
 
 Cat.are_the_best?
-Traceback (most recent call last):
-        1: from (irb)
-NoMethodError (private method `are_the_best?' called for Cat:Class)
+# Traceback (most recent call last):
+#         1: from (irb)
+# NoMethodError (private method `are_the_best?' called for Cat:Class)
 ```
 
 ---
@@ -373,14 +373,14 @@ So far so good, `E` does indeed have `D`'s behavour.
 
 ```ruby
 F.new.a
-Traceback (most recent call last):
-        1: from (irb)
-NoMethodError (undefined method `a' for #<F:0x00007febf409e218>)
+# Traceback (most recent call last):
+#         1: from (irb)
+# NoMethodError (undefined method `a' for #<F:0x00007febf409e218>)
 ```
 
 Success! We correctly predicted this too. If instances of `F` don't have `D`'s behaviour, could the class object `F` have it then? To predict it, we can ask `F`'s singleton class!
 
-```
+```ruby
 F.singleton_class.ancestors
 # => [#<Class:F>, D, #<Class:Object>, ...]
 ```
@@ -392,7 +392,7 @@ F.a
 # => "Hello? This is D"
 ```
 
-What does this tell us? It looks like `extend` applies to the *singleton class*'s behaviour the same changes which `include` does to the *class*'s behaviour. If that were the case, it means we could achieve the same results by calling `include` within the singleton class instead.
+What does this tell us? It looks like `extend` applies to the *singleton class*'s the same changes which `include` does to the *class*'s. If that were the case, it means we could achieve the same results by calling `include` within the singleton class instead.
 
 ```ruby
 class D
@@ -410,7 +410,7 @@ D.a
 
 It works as predicted!
 
-I should note that this is not _exactly_ true, `extend` and `singleton_class.include` _are_ slightly different. Whenever a module is gets added to the ancestor chain of another module, the first module gets a callback on one of three methods: `prepended`, `included`, `extended`. Some side-effects could be expected from these methods, and you may be required to use a specific method to get these side-effects.
+I should note that this is not _exactly_ true, `extend` and `singleton_class.include` are slightly different. Whenever a module is gets added to the ancestor chain of another module, the first module gets a callback on one of three methods: `prepended`, `included`, `extended`. Some side-effects could be expected from these methods, and you may be required to use a specific method to get these side-effects.
 
 ```ruby
 module Mod
