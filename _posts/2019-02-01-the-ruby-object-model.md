@@ -20,7 +20,7 @@ If you'd rather skip the wall of text, visit the [**TL; DR**](#conclusion-or-tl-
 
 ## Objects
 
-You'll hear it often: all values in Ruby are objects, and all expressions return values. It is thus commonly said that "Everything in Ruby is an Object". Let's add some objects to our program. We'll use the this code for the this entire section:
+You'll hear it often: all values in Ruby are objects, and all expressions return values. It is thus commonly said that "Everything in Ruby is an Object". Let's add some objects to our program. We'll use the this code for the entire section:
 
 ```ruby
 class Animal
@@ -87,7 +87,7 @@ Whenever you call the `pet` method on `coco`, the Ruby VM will find the behaviou
 
 <sub>In the previous figure, ancestors after `Animal` (`Kernel` and `BasicObject`) have been omitted.</sub>
 
-To know which method are defined on each ancestor in the ancestor chain, use the `instance_methods` method. The boolean argument specifies whether to also include the methods defined by the class's other ancestors.
+To know which methods are defined on each ancestor in the ancestor chain, use the `instance_methods` method. The boolean argument specifies whether to also include the methods defined by the class's other ancestors.
 
 ```ruby
 Cat.instance_methods(false)
