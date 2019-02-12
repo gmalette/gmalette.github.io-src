@@ -51,7 +51,7 @@ coco.pet
 # => prints "purrr"
 ```
 
-Objects in Ruby are just a combination of state—instance variables and their values—, with a class attached to it. The class of an object defines the methods the object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
+Objects in Ruby are just a combination of state—the values of instance variables—, with a class attached to it. The class of an object defines the methods the object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
 
 ```ruby
 # State
@@ -95,7 +95,7 @@ Cat.instance_methods(false)
 # => [:pet]
 ```
 
-In Ruby, classes are also values, which means they are also objects. This is interesting; it means that in addition to defining methods, classes are also the combination of state—instance variables and their values—, with a reference to a class.
+In Ruby, classes are also values, which means they are also objects. This is interesting; it means that in addition to defining methods, classes are also the combination of state and a reference to a class.
 
 ![Diagram of coco and the Cat class, with classes showing state](/static/img/posts/2019-02-01-the-ruby-object-model/cat-is-a-class.svg)
 
