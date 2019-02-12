@@ -51,7 +51,7 @@ coco.pet
 # => prints "purrr"
 ```
 
-Objects in Ruby are just a bag holding state, with a class attached to it. The class of an object defines the methods that object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
+Objects in Ruby are just a bag holding state, with a class attached to it. The class of an object defines the methods the object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
 
 ```ruby
 # State
@@ -63,11 +63,11 @@ coco.class
 # => Cat
 ```
 
-`coco`'s state contains two instance variables: `@name` and `@affection`. It's class is `Cat`. Nothing surprising so far.
+`coco`'s state contains two instance variables: `@name` and `@affection`. Its class is `Cat`. Nothing surprising so far.
 
 ![Diagram of coco and the Cat class](/static/img/posts/2019-02-01-the-ruby-object-model/fig-1-coco-and-cat.svg)
 
-The word "class" in Ruby can mean multiple things: the instantitable class which provides behaviour to it's instances, the class object, or both. When talking about an object's class, we generally intend to describe the methods defined by that class. For this purpose, we will use the word _behaviour_ from now on.
+The word "class" in Ruby can mean multiple things: the instantitable class which provides behaviour to its instances, the class object, or both. When talking about an object's class, we generally intend to describe the methods defined by that class. For this purpose, we will use the word _behaviour_ from now on.
 
 ## Classes
 
@@ -99,9 +99,9 @@ In Ruby, classes are also values, which means they are also objects. This is int
 
 ![Diagram of coco and the Cat class, with classes showing state](/static/img/posts/2019-02-01-the-ruby-object-model/cat-is-a-class.svg)
 
-For this facet (objects which are instances of the `class` class), we will be talking about _class objects_.
+For this facet (objects which are instances of the `Class` class), we will be talking about _class objects_.
 
-Class objects have a method named `new`, which comes from the behaviour defined by the `class` class.
+Class objects have a method named `new`, which comes from the behaviour defined by the `Class` class.
 
 ```ruby
 Cat.method(:new).owner
@@ -148,7 +148,7 @@ Since `Module`s cannot be instantiated nor subclassed, they need another way to 
 
 ### Include
 
-When using `include(A)`, the module (`A`) is inserted in the ancestor chain of the receiver module. It's methods are thus made available on instances of the receiver.
+When using `include(A)`, the module (`A`) is inserted in the ancestor chain of the receiver module. Its methods are thus made available on instances of the receiver.
 
 ```ruby
 class Cat < Animal
@@ -158,7 +158,7 @@ end
 # Or the equivalent: `Cat.include(Quadruped)`
 ```
 
-The previous code will add `Quadruped` as an ancestor to `Cat`, making it's methods available to all instances of `Cat`.
+The previous code will add `Quadruped` as an ancestor to `Cat`, making its methods available to all instances of `Cat`.
 
 ```ruby
 coco.class.ancestors
@@ -196,7 +196,7 @@ B.new.foo
 #    in a
 ```
 
-Some people are surprised that this behaviour remains unchanged if we move `include(A)` to after the method definition. The important thing to remember is that an object's behaviour is defined by it's class's ancestor chain; moving `include(A)` lower down has no impact on the ancestor chain.
+Some people are surprised that this behaviour remains unchanged if we move `include(A)` to after the method definition. The important thing to remember is that an object's behaviour is defined by its class's ancestor chain; moving `include(A)` lower down has no impact on the ancestor chain.
 
 ### Prepend
 
@@ -228,7 +228,7 @@ dora.number_of_toes
 # => 22
 ```
 
-Earlier in this post, I said that objects are the combination of state and a class. This is slightly less than accurate. In fact, two objects instantiated from the same class, are not necessarily of the same type. This is (you probably guessed it from the section title) because of the singleton class. The truth is, every object in Ruby possesses it's very own class, of which it is a singleton. You may also have seen "eigenclass"—another word for singleton class—, or "metaclass", which is specifically a Class object's singleton class. In our code, `dora` and `coco` don't have the same class, which explains why `coco` does not have the `number_of_toes` method:
+Earlier in this post, I said that objects are the combination of state and a class. This is slightly less than accurate. In fact, two objects instantiated from the same class, are not necessarily of the same type. This is (you probably guessed it from the section title) because of the singleton class. The truth is, every object in Ruby possesses its very own class, of which it is a singleton. You may also have seen "eigenclass"—another word for singleton class—, or "metaclass", which is specifically a Class object's singleton class. In our code, `dora` and `coco` don't have the same class, which explains why `coco` does not have the `number_of_toes` method:
 
 ```ruby
 coco.number_of_toes
@@ -237,7 +237,7 @@ coco.number_of_toes
 # NoMethodError (undefined method `number_of_toes' for #<Cat:0x00007fe5201b0f78 @name="coco">)
 ```
 
-As such, the "true" class of an object is it's singleton class.
+As such, the "true" class of an object is its singleton class.
 
 ```ruby
 dora.singleton_class.instance_methods(false)
@@ -258,7 +258,7 @@ The following diagram shows the hierarchy of both `coco` and `dora`, with their 
 
 ![Diagram of coco and the Cat class](/static/img/posts/2019-02-01-the-ruby-object-model/coco-and-dora-hierarchy.svg)
 
-Astute readers will correctly understand that, in many cases, an object's singleton class can be elided by the virtual machine. In fact, if the VM _did not_ elide most of them, no Ruby program would be able to run. This is because **class objects also have singleton classes**, and Singleton classes are also class objects, which themselves also have singleton classes... and so on recursively. In our previous example, `coco`'s singleton class can be elided since it neither defines methods, nor has state.
+Astute readers will correctly understand that, in many cases, an object's singleton class can be elided (omitted) by the virtual machine. In fact, if the VM _did not_ elide most of them, no Ruby program would be able to run. This is because **class objects also have singleton classes**, and Singleton classes are also class objects, which themselves also have singleton classes... and so on recursively. In our previous example, `coco`'s singleton class can be elided since it neither defines methods, nor has state.
 
 Methods defined on a class object's singleton class are sometimes erroneously called "static functions". This nomenclature is misleading; we should avoid it. Using it sets us up for expectations the Ruby VM cannot meet. The reason is, they are not functions, they are nothing more than methods defined on a class object's singleton class. Additionally, constants in Ruby are _not truly constant_, so these methods are not static either.
 
@@ -284,7 +284,7 @@ class Cat < Animal
 end
 ```
 
-In this last example, `class << self` is a special syntax which opens `self`'s singleton class, in this case, `Cat`'s, similar to how `class Cat` opens the `Cat` class. Everything that can be done in `Cat` to affect it's instances can be done within `class << self` to affect the only instance of `Cat`'s singleton class, which is `Cat` itself. (oh god, I'm going to lose people over this overuse of the words "class" and "singleton", aren't I?)
+In this last example, `class << self` is a special syntax which opens `self`'s singleton class, in this case, `Cat`'s, similar to how `class Cat` opens the `Cat` class. Everything that can be done in `Cat` to affect its instances can be done within `class << self` to affect the only instance of `Cat`'s singleton class, which is `Cat` itself. (oh god, I'm going to lose people over this overuse of the words "class" and "singleton", aren't I?)
 
 Of these 3 forms however, there is a clear "better way" in terms of simplicity and predictibility: `class << self`. Other means will fail the programmer's expectations more often than not, e.g. around method visibility:
 
@@ -352,7 +352,7 @@ class F
 end
 ```
 
-Can we predict what behaviour we can expect from `E` and `F`? If we recall from the previous sections, an object's behaviour is provided by it's class's ancestor chain. Let's try it:
+Can we predict what behaviour we can expect from `E` and `F`? If we recall from the previous sections, an object's behaviour is provided by its class's ancestor chain. Let's try it:
 
 ```ruby
 E.ancestors
@@ -466,7 +466,7 @@ coco.owner
 
 As predicted, the receiver (`coco`) has the behaviour offered by `OwnedByGuillaume`.
 
-<sub>\*although this is perfectly valid Ruby, I urge you to use this parcimoniously</sub>
+<sub>\*although this is perfectly valid Ruby, I urge you to use this parsimoniously</sub>
 
 ## Singleton Class Inheritance
 
@@ -518,10 +518,10 @@ As you can see, while `L` appears in `M`'s ancestors, `Extended` does not, and w
 
 Here's what I hope you take away from this post:
 1. Objects are the composition of state and a reference to a class.
-2. The "real" class of any object is it's singleton class.
+2. The "real" class of any object is its singleton class.
 3. Class are just normal objects, and their class named `Class`.
 4. `prepend` and `include` affect the behaviour offered by the receiver.
-5. `extend` affects the behaviour of the receiver, through it's singleton class.
+5. `extend` affects the behaviour of the receiver, through its singleton class.
 
 [Comment or Like](https://github.com/gmalette/gmalette.github.io/pull/1)
 
