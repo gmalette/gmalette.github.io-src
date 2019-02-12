@@ -51,7 +51,7 @@ coco.pet
 # => prints "purrr"
 ```
 
-Objects in Ruby are just a bag holding state, with a class attached to it. The class of an object defines the methods the object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
+Objects in Ruby are just a combination of state—instance variables and their values—, with a class attached to it. The class of an object defines the methods the object has access to. Ruby is easily introspectable, so we can ask it about the state and class of `coco`.
 
 ```ruby
 # State
@@ -95,7 +95,7 @@ Cat.instance_methods(false)
 # => [:pet]
 ```
 
-In Ruby, classes are also values, which means they are also objects. This is interesting; it means that in addition to defining methods, classes are also a bag holding state, with a reference to a class.
+In Ruby, classes are also values, which means they are also objects. This is interesting; it means that in addition to defining methods, classes are also the combination of state—instance variables and their values—, with a reference to a class.
 
 ![Diagram of coco and the Cat class, with classes showing state](/static/img/posts/2019-02-01-the-ruby-object-model/cat-is-a-class.svg)
 
@@ -409,7 +409,7 @@ D.a
 
 It works as predicted!
 
-I should note that this is not _exactly_ true, `extend` and `singleton_class.include` are slightly different. Whenever a module is gets added to the ancestor chain of another module, the first module gets a callback on one of three methods: `prepended`, `included`, `extended`. Some side-effects could be expected from these methods, and you may be required to use a specific method to get these side-effects.
+I should note that this is not _exactly_ true, `extend` and `singleton_class.include` are slightly different. Whenever a module gets added to the ancestor chain of another module, the first module gets a callback on one of three methods: `prepended`, `included`, `extended`. Some side-effects could be expected from these methods, and you may be required to use a specific method to get these side-effects.
 
 ```ruby
 module Mod
@@ -466,7 +466,7 @@ coco.owner
 
 As predicted, the receiver (`coco`) has the behaviour offered by `OwnedByGuillaume`.
 
-<sub>\*although this is perfectly valid Ruby, I urge you to use this parsimoniously</sub>
+<sub>\*although calling `extend` on any object is perfectly valid Ruby, I urge you to either not use it, or use it very parsimoniously</sub>
 
 ## Singleton Class Inheritance
 
