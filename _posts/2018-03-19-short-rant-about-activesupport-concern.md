@@ -2,6 +2,7 @@
 layout: post
 title: Short Rant about ActiveSupport::Concern
 date: 2018-03-19 21:00:00 +0400
+description: "Most usages of ActiveSupport::Concern are unnecessary. Here's why."
 categories:
 - Ruby
 ---

@@ -2,6 +2,7 @@
 layout: post
 title: Revoking the (Parentheses) Privilege
 date: 2018-12-03 21:00:00 +0400
+description: "Not using parentheses on method calls (in Ruby) is unsafe and unpredictable. Use parentheses."
 categories:
 - Ruby
 ---

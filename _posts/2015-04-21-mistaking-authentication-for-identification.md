@@ -2,6 +2,7 @@
 layout: post
 title: Mistaking Authentication for Identification
 date: 2015-04-21 20:00:00 +0400
+description: "Earlier this year, I accidentally uncovered a flaw in many providers using git shell, because they mistake Authentication for Identification."
 categories:
 - General
 ---

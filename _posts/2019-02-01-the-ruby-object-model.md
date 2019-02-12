@@ -2,6 +2,7 @@
 layout: post
 title: The Ruby Object Model
 date: 2019-02-01 13:36:00 +0400
+description: "A post in which I try to explain Ruby's Object Model: Objects, Classes, Singleton Classes, Modules..."
 categories:
 - Ruby
 ---
