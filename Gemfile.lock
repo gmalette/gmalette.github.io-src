@@ -248,10 +248,9 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jekyll (~> 3.7.4)
   kramdown
   pry
   rouge
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
