@@ -7,7 +7,7 @@ categories:
 - Ruby
 ---
 
-Recently I was called out. I hypothesized that some bad patterns in Ruby are caused by developers misunderstanding Ruby's Object Model, but I had not provided any learning resources. In fact, I couldn't find anything satisfying, so I decided to write this post.
+Recently I was called out. I hypothesized that some bad patterns in Ruby are caused by developers misunderstanding Ruby's Object Model, but I had not provided them with any learning resources. In fact, I couldn't find anything satisfying, so I decided to write this post.
 
 **Edit:** I've been sent other resources about Ruby's Object Model:
 - [All I'd Wanted to Know about Ruby's Object Model Starting Out...and Mooar!!!](https://www.youtube.com/watch?v=268UU4EpTew) in which Jun Qi Tan explains what I tried to in this post, in a much more eloquent talk.
@@ -68,7 +68,7 @@ coco.class
 
 ![Diagram of coco and the Cat class](/static/img/posts/2019-02-01-the-ruby-object-model/fig-1-coco-and-cat.svg)
 
-The word "class" in Ruby can mean multiple things: the instantitable class which provides behaviour to its instances, the class object, or both. When talking about an object's class, we generally intend to describe the methods defined by that class. For this purpose, we will use the word _behaviour_ from now on.
+The word "class" in Ruby can mean multiple things: the instantiatable class which provides behaviour to its instances, the class object, or both. When talking about an object's class, we generally intend to describe the methods defined by that class. For this purpose, we will use the word _behaviour_ from now on.
 
 ## Classes
 
@@ -117,7 +117,7 @@ coco.class
 # => Cat
 ```
 
-While this method can be changed in by any class in the ancestor chain, this privilege is rarely abused and is frowned upon, but know that one _could_ do it.
+While this method can be changed by any class in the ancestor chain, this privilege is rarely abused and is frowned upon, but know that one _could_ do it.
 
 For some, it may be surprising that the `Class` class is a subclass of the `Module` class, meaning that all class objects are also Modules. In the next section, we will talk about modules; remember that many things will also apply to class objects.
 
@@ -287,7 +287,7 @@ end
 
 In this last example, `class << self` is a special syntax which opens `self`'s singleton class, in this case, `Cat`'s, similar to how `class Cat` opens the `Cat` class. Everything that can be done in `Cat` to affect its instances can be done within `class << self` to affect the only instance of `Cat`'s singleton class, which is `Cat` itself. (oh god, I'm going to lose people over this overuse of the words "class" and "singleton", aren't I?)
 
-Of these 3 forms however, there is a clear "better way" in terms of simplicity and predictibility: `class << self`. Other means will fail the programmer's expectations more often than not, e.g. around method visibility:
+Of these 3 forms however, there is a clear "better way" in terms of simplicity and predictability: `class << self`. Other means will fail the programmer's expectations more often than not, e.g. around method visibility:
 
 ```ruby
 class Cat < Animal
@@ -306,7 +306,7 @@ Cat.are_the_best?
 # => true
 ```
 
-I didn't intend to talk about method visibility in this object model post, but let's just briefly go there. The reason for this unexpected behaviour is that `private` is not a keyword, it is a method. In this case, it will be received by `Cat`, allowing it to make any new method defined on it as private. `Cat`'s singleton class however, does not receive this method call to `private`. As a result, it is not aware that it should change the visibility of methods that will be defined.
+I didn't intend to talk about method visibility in this object model post, but let's just briefly go there, to show an example of Ruby failing to meet expectations. The reason for this unexpected behaviour is that `private` is not a keyword, it is a method. In this case, it will be received by `Cat`, allowing it to make any new method defined on it as private. `Cat`'s singleton class however, does not receive this method call to `private`. As a result, it is not aware that it should change the visibility of methods that will be defined.
 
 Had we used the `class << self` syntax instead, it would have worked as expected:
 
