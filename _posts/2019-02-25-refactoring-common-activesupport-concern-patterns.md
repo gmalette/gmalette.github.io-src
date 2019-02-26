@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Refactoring Common ActiveSupport::Concern Patterns
-date: 2019-02-12 20:00:00 +0400
+date: 2019-02-25 20:00:00 +0400
 description: "Following my Rant on ActiveSupport::Concern), I've been asked how to refactor the code to make it stop using it, or write new code without it. I thought I'd share the patterns that have worked for me so far."
 categories:
 - Ruby
