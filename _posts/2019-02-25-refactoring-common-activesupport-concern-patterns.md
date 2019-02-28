@@ -336,7 +336,7 @@ end
 
 ## A Pattern I Don't Know How To Refactor
 
-There are still a few usage patterns of `AS::C` which I don't know how to easily refactor, they would require fundamental changes. These have always been around adding another layer metaprogramming, often under the guise of convenience. Here's an example, involving metaprogramming and `ActiveRecord`. The `CanBeActive` module adds a scope to the class, and a method to the instances. While I don't consider this to be good practice, I don't see a more convenient achieve the same results.
+There are still a few usage patterns of `AS::C` which I don't know how to easily refactor, they would require fundamental changes. These have always been around adding another layer metaprogramming, often under the guise of convenience. Here's an example, involving metaprogramming and `ActiveRecord`. The `CanBeActive` module adds a scope to the class, and a method to the instances. While I don't consider this to be good practice, I don't see a more convenient way to achieve the same results.
 
 ```ruby
 module CanBeActive
