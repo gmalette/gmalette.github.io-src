@@ -35,7 +35,7 @@ Jump right ahead:
 
 ### ActiveRecord's Errors API
 
-I want to start this off witn an easy, approachable example: ActiveRecord's `errors` API, which requires a specific incantation.
+I want to start this off with an easy, approachable example: ActiveRecord's `errors` API, which requires a specific incantation.
 
 ```ruby
 class User < ApplicationRecord
