@@ -42,7 +42,7 @@ class User < ApplicationRecord
   validates(:name, presence: true) # 1
 end
 
-User.new # 2
+user = User.new # 2
 user.errors.any? # 3
 # => false
 
