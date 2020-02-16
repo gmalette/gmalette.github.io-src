@@ -2,7 +2,7 @@
 layout: post
 title: Affordance for Errors, part 2
 date: 2020-02-16 15:00:00 +0400
-description: In this first post of three, I highlight a few examples of affordance for errors in common APIs.
+description: In this second post of three, I show how other APIs and languages have avoided some of the problems shown in the first post.
 categories:
 - Ruby
 ---

@@ -66,6 +66,8 @@ APIs like this can often be exposed in ways that completely suppress the problem
 Some APIs, like ActiveRecord, allow mistakenly loading data serially instead of in a batch manner, without guiding the user towards the more performant approach.
 
 ```ruby
+investor = Investor.first
+
 investor.accounts.each do |account|
   puts account.fund.name
 end
@@ -126,7 +128,7 @@ Many devs would expect the `Foo.bar` method to be private to `Foo`–perhaps bec
 
 That it is such a common error pains me the utmost, because it is so unnecessary. Approximately 100% of other languages do not have this problem, by having visibility modifiers at the method definition level. In fact, it even works in Ruby, but I digress.
 
-## Ignored Values
+### Ignored Values
 
 Some APIs will use values that are easy to ignore, once again leading to errors.
 
