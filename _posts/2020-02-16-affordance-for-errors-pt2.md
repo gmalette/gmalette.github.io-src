@@ -187,7 +187,7 @@ The first reason is that it makes type checking easier (`is_a?(InventoryPolicy)`
 
 Quick Reminder: Some APIs do not meet the user's expectations. Ex: Ruby's visibility modifiers (`private`, `public`, `protected`) have no effect when using `def self.method_name`.
 
-This specific problem is such a common error pains me the utmost, because it is so unnecessary. Approximately 100% of other languages do not have this problem, by having visibility modifiers at the method definition level. In fact, it even works in Ruby, and many large companies have adopted this style. It may be inelegant, but it removes this opportunity for errors altogether:
+That this specific problem is such a common error pains me the utmost, because it is so unnecessary. Approximately 100% of other languages do not have this problem, by having visibility modifiers at the method definition level. In fact, it even works in Ruby, and many large companies have adopted this style. It may be inelegant, but it removes this opportunity for errors altogether:
 
 ```ruby
 class Foo
