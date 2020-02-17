@@ -116,11 +116,16 @@ Finding examples for illegal states in state machines is almost trivial. A good 
 
 ```ruby
 class Transaction
-  attr_reader(:amount)         # The monetary value of the transaction
-  attr_reader(:status)         # Can be `:pending`, `:success`, `:failed`
-  attr_reader(:failure_reason) # Only present if the transaction has failed, `nil` otherwise
-  attr_reader(:completed_at)   # Time at which the Transaction became `:success` or `:failed`,
-                               # `nil` otherwise`
+  # The monetary value of the transaction
+  attr_reader(:amount)
+  # Can be `:pending`, `:success`, `:failed`
+  attr_reader(:status)
+  # Only present if the transaction has
+  # failed, `nil` otherwise
+  attr_reader(:failure_reason)
+  # Time at which the Transaction became
+  # `:success` or `:failed`, `nil` otherwise
+  attr_reader(:completed_at)
 end
 ```
 
@@ -144,7 +149,9 @@ end
 
 class Transaction
   attr_reader(:money)
-  attr_reader(:state) # One of `TransactionPending`, `TransactionSuccess`, or `TransactionFailure`
+  # One of `TransactionPending`, `TransactionSuccess`,
+  # or `TransactionFailure`
+  attr_reader(:state)
 end
 ```
 
@@ -157,7 +164,8 @@ In Part 1, I also gave examples of ["Incomplete Booleans"]({% post_url 2020-01-2
 We already know many ways to express a finite-but-larger-than-two number of values. Some people will use `Symbol`, `String`, or `Integer` values to that effect, and validate that the value is part of a finite list.
 
 ```ruby
-product.inventory_policy = :managed_strict # or :managed_lax or :unmanaged
+# can also be :managed_lax or :unmanaged
+product.inventory_policy = :managed_strict
 ```
 
 The way I prefer structuring it is by using objects:
