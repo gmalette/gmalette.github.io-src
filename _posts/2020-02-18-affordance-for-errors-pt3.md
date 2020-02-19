@@ -7,12 +7,12 @@ categories:
 - Ruby
 ---
 
-In the [first post]({% post_url 2020-01-29-affordance-for-errors-pt1 %}) of this series, I showed how a few APIs afford errors to their users. In the [second post]({% post_url 2020-02-16-affordance-for-errors-pt2 %}), I showed a few examples of how other APIs or languages have avoided or solved the same problems. In this third and final post, we will work through a practical exercise of desigining an API.
+In the [first post]({% post_url 2020-01-29-affordance-for-errors-pt1 %}) of this series, I showed how a few APIs afford errors to their users. In the [second post]({% post_url 2020-02-16-affordance-for-errors-pt2 %}), I showed a few examples of how other APIs or languages have avoided or solved the same problems. In this third and final post, we will work through an example of desigining an API.
 
 
 When I design APIs, I try to think of all the ways it could possibly be misused, and remove as many ways as possible. Sometimes, this comes at the cost of _some_ ergonomy, but how much I'm willing to sacrifice depends on a few factors: the criticality of the errors, the impact on ergonomy, the (handwavy) likelyhood that it will occur, to name a few.
 
-## Practical Exercise: Reservation Manager
+## Design Example: Reservation Manager
 
 I was recently writing an API to our reservation manager (the system holds reservation for carts, and disallows selling more items than are available). From the outside, the functionality is simple. You can reserve the items of a cart. Once reserved, the reservation can be claimed (ex: after the payment is successful) or unreserved (ex: if the payment failed).
 
@@ -128,7 +128,7 @@ Opinions may vary, but in mine, we haven't sacrificed ergonomics by the slightes
 
 ## Conclusion
 
-In the first post of this series, I showed a few ways in which common APIs allow their users to make mistakes. My goal was to help you take notice of the problem, so that you can find similar problems (and more) in your own APIs. In the second post, we saw how others have solved the same problems, to help you see ways to remove the affordance you give. In this final post, I went through a practical example, and explained how I design APIs, and how I try to make it easy for my users to make no error. I sincerely hope you can take something away from this series, and that you start taking notice of, and start removing, the affordance for errors in your APIs.
+In the first post of this series, I showed a few ways in which common APIs allow their users to make mistakes. My goal was to help you take notice of the problem, so that you can find similar problems (and more) in your own APIs. In the second post, we saw how others have solved the same problems, to help you see ways to remove the affordance you give. In this final post, I went through an example, and explained how I design APIs, and how I try to make it easy for my users to make no error. I sincerely hope you can take something away from this series, and that you start taking notice of, and start removing, the affordance for errors in your APIs.
 
 [Comment or Like](https://github.com/gmalette/gmalette.github.io/pull/10)
 
