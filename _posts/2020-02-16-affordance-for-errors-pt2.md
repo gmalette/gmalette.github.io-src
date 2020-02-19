@@ -52,7 +52,7 @@ Quick reminder: Some APIs's default usage mode is what users consider a mistake.
 
 _I can already hear [Alex Snaps](https://github.com/alexsnaps) complaining about ORMs. ORMs have their fair share of issues, I get it!  I guess this problem exposes a conumdrum: either we allow the prevalent\* N+1 issue, or we force coupling between unrelated pieces of code._
 
-All the approaches to solving this problem I can think of consist of considering that loading an association of a record loaded through a `has_many` association without precising _how_, is invalid. Let's dissect that.
+All the approaches to solving this problem I can think of consist of considering that loading an association of a record loaded through a `has_many` association without specifying _how_, is invalid. Let's dissect that.
 
 ```ruby
 investor = Investor.find(id)
