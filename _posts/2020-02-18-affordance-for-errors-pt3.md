@@ -55,7 +55,7 @@ Using the learnings from the first post, we can quickly identify a few problems:
 3. Is it legal to use different instances of `ReservationManager` for `reserve` and `claim` or `unreserve`?
 4. It's impossible to know when the reservation has exceeded its lifetime (ex, it has been garbage collected), and it's impossible to force the user to consume (`claim` or `unreserve`) the reservation.
 
-For example, if the user had wrong assumptions about thei system, they could write this implementation:
+For example, if the user had wrong assumptions about their system, they could write this implementation:
 
 ```ruby
 manager.reserve(cart)
@@ -122,7 +122,7 @@ end
 
 This allows us to `unreserve` the reservation if it hasn't been consumed by the end of the block. Depending on the specifics, we can also choose to `raise` if the reservation hasn't been consumed, to notify the users that their code has a problem.
 
-With this API in place, we have dramatically reduced the surface for error. The objects in play will naturally guide the our users towars the correct way to use our API, and even if they don't, it won't compromise the correctness of our system.
+With this API in place, we have dramatically reduced the surface for error. The objects in play will naturally guide the our users towards the correct way to use our API, and even if they don't, it won't compromise the correctness of our system.
 
 Opinions may vary, but in mine, we haven't sacrificed ergonomics by the slightest to get here, either.
 
