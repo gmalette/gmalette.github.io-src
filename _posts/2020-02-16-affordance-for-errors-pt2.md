@@ -50,7 +50,7 @@ end
 
 Quick reminder: Some APIs's default usage mode is what users consider a mistake. Ex: ActiveRecord allows mistakenly loading records in a serial manner, rather than as a batch [(link)]({% post_url 2020-01-29-affordance-for-errors-pt1 %}#n--1).
 
-_I can already hear [Alex Snaps](https://github.com/alexsnaps) complaining about ORMs. ORMs have their fair share of issues, I get it!  I guess this problem exposes a conumdrum: either we allow the prevalent\* N+1 issue, or we force coupling between unrelated pieces of code._
+_I can already hear [Alex Snaps](https://github.com/alexsnaps) complaining about ORMs. ORMs have their fair share of issues, I get it!  I guess this problem exposes a conundrum: either we allow the prevalent\* N+1 issue, or we force coupling between unrelated pieces of code._
 
 All the approaches to solving this problem I can think of consist of considering that loading an association of a record loaded through a `has_many` association without specifying _how_, is invalid. Let's dissect that.
 
@@ -96,13 +96,13 @@ investor.accounts.each do |account|
 end
 ```
 
-The point is to make situations that produce N+1 only achievable explictly. This is the path [`Ecto`](https://hexdocs.pm/ecto/Ecto.html#module-associations) chose.
+The point is to make situations that produce N+1 only achievable explicitly. This is the path [`Ecto`](https://hexdocs.pm/ecto/Ecto.html#module-associations) chose.
 
 \* You don't have to take my word for it Google "[Rails](https://www.mskog.com/posts/42-performance-tips-for-ruby-on-rails/#eliminate-n-1-queries) [performance](https://yalantis.com/blog/how-to-speed-up-your-ruby-on-rails-app/#h.6d0kbb4x1751) [tips](https://www.rorexpertsindia.com/blog/top-3-tips-boost-performance-ruby-rails-application/) [and tricks](https://www.codewithjason.com/rails-performance-tips/)". Nearly all of them will mention N + 1 queries.
 
 ### Illegal States
 
-Quick reminder: if no illegal states can be represented, we never have to worry about the valitity of our objects.
+Quick reminder: if no illegal states can be represented, we never have to worry about the validity of our objects.
 
 I don't think I can express this better than [Yaron Minksy](https://blog.janestreet.com/effective-ml-revisited/), but I'll try to bring it into the Ruby world, if only because this is my favourite topic.
 
@@ -129,7 +129,7 @@ class Transaction
 end
 ```
 
-We can see in this example that some states are illegal, for example is `status` is `:success` but `failure_reason` is present, or if `status` is `pending`, but `completed_at` is present.
+We can see in this example that some states are illegal, for example if `status` is `:success` but `failure_reason` is present, or if `status` is `pending`, but `completed_at` is present.
 
 We can instead express the same object in a way that does not allow these illegal states. We can introduce classes for each possible state, that have the methods valid only for those states. The `Transaction` class will contain only the methods that are transcendental to states.
 
@@ -181,7 +181,7 @@ UNMANAGED = InventoryPolicy.new
 product.inventory_policy = MANAGED_STRICT
 ```
 
-The first reason is that it makes type checking easier (`is_a?(InventoryPolicy)`). It also makes it possible to give behaviour to the different `InventoryPolicy` if the need arises, by adding methods to the objects. When that becomes the case, it will also be trivial to do dependency injection, for example by creating a test-only `InventoryPolicy`. In general, in the worse case, there is no difference between that and using symbols, and in the best case, it's a much more extensible design.
+The first reason is that it makes type checking easier (`is_a?(InventoryPolicy)`). It also makes it possible to give behaviour to the different `InventoryPolicy` if the need arises, by adding methods to the objects. When that becomes the case, it will also be trivial to do dependency injection, for example by creating a test-only `InventoryPolicy`. In general, in the worst case, there is no difference between that and using symbols, and in the best case, it's a much more extensible design.
 
 ### Ruby's Visibility Modifiers
 
@@ -209,7 +209,7 @@ class Foo
 end
 ```
 
-I don't really want to dwell on this too much. The key lesson is: be emphatetic towards your users, understand what they expect, and make sure your APIs match their expectations.
+I don't really want to dwell on this too much. The key lesson is: be empathetic towards your users, understand what they expect, and make sure your APIs match their expectations.
 
 ### Ignored Values
 
@@ -225,11 +225,11 @@ While I do believe that using exceptions for fatal cases is great, I personally 
 
 - Exceptions add a second way methods can return, adding complexity.
 - Unlike in some other languages, in Ruby it's impossible to know the entire set of exceptions a method can raise, making it very hard to know which exceptions should be expected, and of those, which should be handled.
-- More often than not, an exception raised will leave inconsistent state in the program, in stackframes that were not equiped to deal with it.
+- More often than not, an exception raised will leave inconsistent state in the program, in stackframes that were not equipped to deal with it.
 
-As a result, I generally prefer returning object that explain the error that occurred, instead of using exceptions. This makes it important to make sure the returned values are not ignored.
+As a result, I generally prefer returning objects that explain the error that occurred, instead of using exceptions. This makes it important to make sure the returned values are not ignored.
 
-Some languages have solved this problem in interesting ways; some have implemented type systems in which values of certain types cannot produced if they are not consumed. See [substructural type systems on Wiki](https://en.wikipedia.org/wiki/Substructural_type_system).
+Some languages have solved this problem in interesting ways; some have implemented type systems in which values of certain types cannot be produced if they are not consumed. See [substructural type systems on Wiki](https://en.wikipedia.org/wiki/Substructural_type_system).
 
 In [Rust](https://www.rust-lang.org/) specifically, API developers can mark return values as `must_use`, meaning that the return value __must be consumed__ (or checked). Failing to do so would result in a compiler warning. [ATS](http://www.ats-lang.org/) achieves similar results via a concept of "proofs" where unconsumed proofs prevent compilation.
 

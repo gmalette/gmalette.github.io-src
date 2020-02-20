@@ -7,10 +7,10 @@ categories:
 - Ruby
 ---
 
-In the [first post]({% post_url 2020-01-29-affordance-for-errors-pt1 %}) of this series, I showed how a few APIs afford errors to their users. In the [second post]({% post_url 2020-02-16-affordance-for-errors-pt2 %}), I showed a few examples of how other APIs or languages have avoided or solved the same problems. In this third and final post, we will work through an example of desigining an API.
+In the [first post]({% post_url 2020-01-29-affordance-for-errors-pt1 %}) of this series, I showed how a few APIs afford errors to their users. In the [second post]({% post_url 2020-02-16-affordance-for-errors-pt2 %}), I showed a few examples of how other APIs or languages have avoided or solved the same problems. In this third and final post, we will work through an example of designing an API.
 
 
-When I design APIs, I try to think of all the ways it could possibly be misused, and remove as many ways as possible. Sometimes, this comes at the cost of _some_ ergonomy, but how much I'm willing to sacrifice depends on a few factors: the criticality of the errors, the impact on ergonomy, the (handwavy) likelyhood that it will occur, to name a few.
+When I design APIs, I try to think of all the ways it could possibly be misused, and remove as many ways as possible. Sometimes, this comes at the cost of _some_ ergonomy, but how much I'm willing to sacrifice depends on a few factors: the criticality of the errors, the impact on ergonomy, the (handwavy) likelihood that it will occur, to name a few.
 
 ## Design Example: Reservation Manager
 
@@ -22,7 +22,7 @@ I think the very first step of API design is empathy. Yearn for your users to su
 
 The most important question you must ask yourself: "who will the users be?". Are they interns, senior developers, or principal engineers? Will they use your API every day, once per quarter, or once per decade? Is your API the cornerstone of their feature, or are they using it as an afterthought?
 
-Whenver possible, aim for the lowest common denominator. If an intern unfamiliar with the language using this API for the first time can succeed, the probability that a principal engineer using it for the 10th time will too is very high. When it's less practical, understanding your users will help you make the right tradeoffs between the different factors.
+Whenever possible, aim for the lowest common denominator. If an intern unfamiliar with the language using this API for the first time can succeed, the probability that a principal engineer using it for the 10th time will too is very high. When it's less practical, understanding your users will help you make the right tradeoffs between the different factors.
 
 In my case, this API is likely to be used by junior developers, and very rarely. They will definitely plan ahead as this will be integral to what they're building.
 
@@ -68,7 +68,7 @@ Knowing that the users of this system will use this API approximately once in th
 
 ### Removing the Affordances
 
-To partially remove the affordance #1, we need to give an incentive to the user to use the return value. In fact, we will give them no choice. We can start by make `reserve` return a `Reservation` object, which is now the owner of `claim` and `unreserve` methods. In doing so, we also solved #3; our users _cannot_ use a different instance of `ReservationManager` to `claim` or `unreserve.`
+To partially remove the affordance #1, we need to give an incentive to the user to use the return value. In fact, we will give them no choice. We can start by making `reserve` return a `Reservation` object, which is now the owner of `claim` and `unreserve` methods. In doing so, we also solved #3; our users _cannot_ use a different instance of `ReservationManager` to `claim` or `unreserve.`
 
 ```ruby
 reservation = manager.reserve(cart)

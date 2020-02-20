@@ -2,18 +2,18 @@
 layout: post
 title: Affordance for Errors, part 1
 date: 2020-01-29 23:00:00 +0400
-description: In this first post of three, I highlight a few examples of affordance for errors in common APIs.
+description: In this first posts of three, I highlight a few examples of affordance for errors in common APIs.
 categories:
 - Ruby
 ---
 
 A few years ago, I read [Sandi Metz's blog post about affordances](https://www.sandimetz.com/blog/2018/21/what-does-oo-afford) and it stuck with me. I started minding how the APIs I write can be misused; I started noticing the surface I leave for the users of my APIs to make errors. Soon after I started noticing how the APIs we use every day are full of affordance for error.
 
-In this first of three post, I want to show a few examples of how common APIs (mostly in Ruby and Rails) can be accidentally misused. Maybe this will spark a discussion, or will incite people to share other issues they've seen. The second post will explore solutions to the problems from this post. In the final post of this series, I will show how I approach API design to minimize the affordance for errors while offering the best ergonomics I can.
+In this first of three posts, I want to show a few examples of how common APIs (mostly in Ruby and Rails) can be accidentally misused. Maybe this will spark a discussion, or will incite people to share other issues they've seen. The second post will explore solutions to the problems from this post. In the final post of this series, I will show how I approach API design to minimize the affordance for errors while offering the best ergonomics I can.
 
 ## Why Bother?
 
-You may be wondering why this matters, _why can't just write better code, without mistake_. After all, we're smart people, we should be able to learn these tools as to not make mistakes... If you are the kind of developer that can write bug-free code, this blog post is even more so for you, as your coworkers cannot. Developers are humans. We get tired, we forget, our attention lapses, we're juggling umpteen other things in our heads. For many reasons, we end up making mistakes. It is then our shared responsibility to make your APIs human-friendly.
+You may be wondering why this matters, _why can't just write better code, without mistake_. After all, we're smart people, we should be able to learn these tools and to not make mistakes... If you are the kind of developer that can write bug-free code, this blog post is even more so for you, as your coworkers cannot. Developers are humans. We get tired, we forget, our attention lapses, we're juggling umpteen other things in our heads. For many reasons, we end up making mistakes. It is then our shared responsibility to make your APIs human-friendly.
 
 Moreover, good APIs minimize the amount of mistakes we can make, they remove the pain and frustration of using them. They lower the cost of entry. They don't require you to understand how things are implemented "on the metal". Providing good APIs with minimal affordance for errors is about making the life of your fellow developers just a little better, making them just a little more productive, easing their cognitive load just a little.
 
@@ -91,7 +91,7 @@ Attributed to [a 2011 post by Yaron Minksy](https://blog.janestreet.com/effectiv
 
 __If no illegal state can be represented, we never have to worry about the validity of objects__.
 
-More often than not, however, we write code that allows represending invalid state. ActiveRecord initialization is a good example, but there are so many others. All APIs that use `Hash`es to represent state immediately allow illegal state. There are many, many variations of APIs offering this kind of surface for errors, I encourage you to keep your eyes peeled and take notice.
+More often than not, however, we write code that allows representing invalid state. ActiveRecord initialization is a good example, but there are so many others. All APIs that use `Hash`es to represent state immediately allow illegal state. There are many, many variations of APIs offering this kind of surface for errors, I encourage you to keep your eyes peeled and take notice.
 
 #### Incomplete Booleans
 
@@ -110,7 +110,7 @@ Ruby code is [plagued with primitive obsessions](https://refactoring.guru/smells
 
 ### Ruby's Visibility Modifiers
 
-Theres an entire category of errors stemming from APIs allowing you to do the wrong thing, while seemingly doing the right thing.
+There's an entire category of errors stemming from APIs allowing you to do the wrong thing, while seemingly doing the right thing.
 
 Visibility modifiers (`private`, `protected`, `public`) are prime examples; they are the source of many mistakes, by newcomers's mismatched expectations and veterans's lapse of attention. To say nothing of the fact that `protected` means something different than in other languages, many devs make mistakes when it comes to singleton methods, often called "class methods". Here's an example:
 
