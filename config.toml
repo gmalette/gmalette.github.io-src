@@ -663,7 +663,7 @@ uglyURLs = false
 
     ## Utterances
     enableUtterances = true
-    utterancesRepo = "gmalette/gmalette.github.io"
+    utterancesRepo = "gmalette/gmalette.github.io-src"
     utterancesIssueTerm = "title"
     utterancesTheme = "github-light"
     utterancesThemeDark = "photon-dark"
