@@ -525,5 +525,3 @@ Here's what I hope you take away from this post:
 4. `prepend` and `include` affect the behaviour offered by the receiver.
 5. `extend` affects the behaviour of the receiver, through its singleton class.
 
-[Comment or Like](https://github.com/gmalette/gmalette.github.io-src/pull/1)
-

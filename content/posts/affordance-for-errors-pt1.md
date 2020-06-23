@@ -224,5 +224,3 @@ My list contained many other affordances that didn't make the cut for this post.
 - Using of structureless markup languages (YAML)
 
 If you wish to contribute with more examples, please share them in the comments.
-
-[Comment or Like](https://github.com/gmalette/gmalette.github.io-src/pull/7)

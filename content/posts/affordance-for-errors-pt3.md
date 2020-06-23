@@ -131,5 +131,3 @@ Opinions may vary, but in mine, we haven't sacrificed ergonomics by the slightes
 
 In the first post of this series, I showed a few ways in which common APIs allow their users to make mistakes. My goal was to help you take notice of the problem, so that you can find similar problems (and more) in your own APIs. In the second post, we saw how others have solved the same problems, to help you see ways to remove the affordance you give. In this final post, I went through an example, and explained how I design APIs, and how I try to make it easy for my users to make no error. I sincerely hope you can take something away from this series, and that you start taking notice of, and start removing, the affordance for errors in your APIs.
 
-[Comment or Like](https://github.com/gmalette/gmalette.github.io-src/pull/10)
-
