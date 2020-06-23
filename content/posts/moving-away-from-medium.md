@@ -17,5 +17,5 @@ From Medium I miss the editor (although coming back to Vim feels nice), and most
 
 Hoping this'll stick!
 
-[Comment or React](https://github.com/gmalette/gmalette.github.io/pull/3)
+[Comment or React](https://github.com/gmalette/gmalette.github.io-src/pull/3)
 

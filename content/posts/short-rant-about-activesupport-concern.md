@@ -112,5 +112,5 @@ I agree that this still isn’t the greatest OO design, but at least it’s radi
 
 Because I struggle to find a single case in which using `AS::C` actually provides a better design than not using it, I am a hardliner of never using it.
 
-[Comment or React](https://github.com/gmalette/gmalette.github.io/pull/4)
+[Comment or React](https://github.com/gmalette/gmalette.github.io-src/pull/4)
 

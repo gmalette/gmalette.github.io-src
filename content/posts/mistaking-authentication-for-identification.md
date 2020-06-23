@@ -73,4 +73,4 @@ To leave you with a simple takeaway, identification and authentication serve a f
 
 Thanks to Lydia Krupp Hunter and Richard McGain.
 
-[Comment or React](https://github.com/gmalette/gmalette.github.io/pull/5)
+[Comment or React](https://github.com/gmalette/gmalette.github.io-src/pull/5)

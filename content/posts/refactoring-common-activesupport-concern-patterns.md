@@ -365,4 +365,4 @@ Hopefully this post has proven that removing occurrences of `ActiveSupport::Conc
 
 And sometimes, you just have to give up and add another layer of metaprogramming, in which case feel free to use `AS::C`.
 
-[Comment or React](https://github.com/gmalette/gmalette.github.io/pull/6)
+[Comment or React](https://github.com/gmalette/gmalette.github.io-src/pull/6)
