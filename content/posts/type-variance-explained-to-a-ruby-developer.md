@@ -100,15 +100,15 @@ We can also notice that we cannot send `object_array` into `print_age`, because 
 
 What can we learn from this? Depending if you read from the array or write to it, the type doesn't behave the same.
 
-## Sources are Covariant
+## Sources Are Covariant
 
 Composed types from which you can exclusively read or take stuff are called sources. Examples include `Enumerable` and `Reader`. These become more specific as their type members become more specific. As a result of `Dog` being a subtype of `Animal`, `Enumerable<Dog>` is a subtype of `Enumerable<Animal>`; you can pass an `Enumerable<Dog>` to any method that expects an `Enumerable<Animal>`.
 
-## Sinks are Contravariant
+## Sinks Are Contravariant
 
 Sinks are the opposite of sources: they're types to which you can exclusively write or put stuff in. Examples include `Logger` or `Writer`. Perhaps counter-intuitively, these become more specific as their type member become less specific! That means that __`Logger<Animal>` is in fact a subtype of `Logger<Dog>`__ (because `Logger<Animal>` will be able to log for any `Dog` as well.
 
-## Read And Write, Put And Take
+## Read and Write, Put and Take
 
 What if a method needs to do both? Read and write, put and take? It would appear that they are at the intersection of covariance and contravariance... and that's exactly right: they're __invariant__. No subtyping is possible.
 
