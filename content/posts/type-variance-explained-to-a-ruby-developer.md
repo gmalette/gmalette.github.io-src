@@ -9,7 +9,7 @@ A few months ago, I found myself trying to explain type variance to a coworker w
 
 This post is how I would explain type variance to a Ruby developer, without throwing the entire Computer Science manual at them. Throughout the post, we will suppose a typical `Animal` type hierarchy, with `Dog` and `Cat` as subtypes.
 
-```
+```ruby
 class Animal
   def age
     @age
@@ -41,7 +41,7 @@ In dynamically typed languages as well as in languages that added generics after
 
 Let's examine a `print_age` method takes an Array of Animals and prints their age.
 
-```
+```ruby
 # @params animals Array<Animal>
 def print_age(animals)
   animals.each { |a| puts(a.age) }
@@ -50,7 +50,7 @@ end
 
 The `print_age` method can be called an array containing any animal:
 
-```
+```ruby
 # Array<Dog>
 dog_array = [Dog.new, Dog.new]
 print_age(dog_array)
@@ -66,7 +66,7 @@ print_age(animal_array)
 
 We can also have another method named `adopt`  that adds animals to the list:
 
-```
+```ruby
 # @params into_animals Array<Animal>
 def adopt(into_animals)
   into_animals.push(Dog.new)
@@ -75,7 +75,7 @@ end
 
 Now can you `adopt` in the same arrays? Let's see.
 
-```
+```ruby
 # Array<Animal>
 animal_array = [Dog.new, Cat.new]
 adopt(animal_array)
@@ -89,7 +89,7 @@ adopt(cat_array)
 
 The answer is no: `adopt` cannot use the same arrays as `print_age`.  However, the `adopt` has a property that `print_age` did not have, it accepts `Array<Object>`.
 
-```
+```ruby
 # Array<Object>
 object_array = [Dog.new, Object.new]
 adopt(object_array)
