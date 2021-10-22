@@ -3,5 +3,5 @@
 	url = https://github.com/reuixiy/hugo-theme-meme.git
 [submodule "public"]
 	path = public
-	url = git@github.com:gmalette/gmalette.github.io
+	url = https://github.com/gmalette/gmalette.github.io
 	branch = master
