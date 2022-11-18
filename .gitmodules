@@ -1,7 +1,7 @@
 [submodule "themes/meme"]
-	path = themes/meme
-	url = https://github.com/reuixiy/hugo-theme-meme.git
+  path = themes/meme
+  url = https://github.com/reuixiy/hugo-theme-meme.git
 [submodule "public"]
-	path = public
-	url = git@github.com:gmalette/gmalette.github.io
-	branch = master
+  path = public
+  url = https://github.com/gmalette/gmalette.github.io
+  branch = master

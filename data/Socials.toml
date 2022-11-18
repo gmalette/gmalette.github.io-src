@@ -10,6 +10,7 @@
     url = "/rss.xml"
     icon = "rss"
     title = "RSS"
+    rel = "external noopener"
     weight = 1
 
 [[socials]]
@@ -17,11 +18,22 @@
     url = "https://github.com/gmalette"
     icon = "github"
     title = "GitHub"
+    rel = "external noopener"
     weight = 2
+
+[[socials]]
+    id = "mastodon"
+    url = "https://hachyderm.io/@gmalette"
+    icon = "mastodon"
+    rel = "me"
+    title = "Mastodon"
+    weight = 3
 
 [[socials]]
     id = "twitter"
     url = "https://twitter.com/gmalette"
     icon = "twitter"
     title = "Twitter"
-    weight = 3
+    rel = "external noopener"
+    weight = 4
+

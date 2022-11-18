@@ -105,7 +105,7 @@ uglyURLs = false
     # Personal website, default: baseURL
     website = "https://gmalette.dev"
     # Twitter
-    twitter = "gmalette"
+#    twitter = "gmalette"
 
 # Related content
 [related]
