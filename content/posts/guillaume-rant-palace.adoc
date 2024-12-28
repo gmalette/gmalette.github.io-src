@@ -1,0 +1,29 @@
+---
+title: "#guillaume-rant-palace"
+date: 2024-12-27 19:17:00 +0400
+description:
+categories:
+- General
+---
+
+= #guillaume-rant-palace
+
+I logged into Twitter today. I wanted to download the archive of my data. In doing so, I couldn't help but be taken back to the days when I was an active user, from Jan 2011 to October 2022.
+
+I didn't tweet much, but over the years, I had come to use Twitter as an outlet for my frustrations, cynicism, takes about working in–or generally interacting with–tech. Where this blog was the long-form, Twitter was the short. Looking at the archive, I remembered the moments. Some takes aged better than others, some were learning opportunities, and some landed flat.
+
+I found that turning this frustration into a joke, involving people, and having them laugh with me was a good release valve. Sharing these takes with strangers on the internet was a good way to be told when I was wrong, and needed to reevaluate my priors.
+
+There, I could only post about topics that were relevant to the public, but much of my takes were about the code and development practices of my employer, and I couldn't share those publicly.
+
+== #guillaume-rant-palace
+
+Around 2018, I needed to vent about something private to my employer, and thus couldn't use Twitter. I decided to create a new Slack channel, `#guillaume-rant-palace` (Slack's channel length limit wouldn't allow the possessive 's'), and post there. I then pretty much made it a habit; whenever something deserved to be shared or discussed, or whenever I needed to vent, I'd write it there. If not for anyone else, at least for me.
+
+I have no idea how it happened, but it took less than a week for someone to join, then our numbers grew slowly but steadily. Much like Twitter, I really enjoyed having this group of people to vent with, but also keep each-other honest, and learn together. It was at times cathartic, funny, salty, insightful. It gave us a place to scream into the void yet be heard. It gave us receptive colleagues with whom we could challenge established patterns.
+
+I like to think that for one hot minute we formed a community that influenced ever so slightly the way the entire company thought about software. I like to believe it wasn't groupthink. The channel has long disappeared, and I can't download _that_ archive; it's impossible to verify.
+
+We've now reached a size (or bureaucracy) where channel creation is restricted, and I certainly couldn't recreate the conversations that went on in the `#guillaume-rant-palace` channel. Much like Twitter, I really miss it.
+
+Ironically, this post is about the loss of both Twitter and `#guillaume-rant-palace` as avenues for this very blog post.
