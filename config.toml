@@ -39,7 +39,8 @@ enableRobotsTXT = true
 # Number of items per page in paginated
 # lists (valid for the `posts` homepage
 # layout in MemE)
-paginate = 10
+[pagination]
+pagerSize = 10
 
 # URL related
 disablePathToLower = false
@@ -81,6 +82,18 @@ uglyURLs = false
             hardWraps = false
             unsafe = true
             xHTML = false
+    [markup.asciidocExt]
+        backend = 'html5'
+        extensions = []
+        failureLevel = 'fatal'
+        noHeaderOrFooter = true
+        preserveTOC = false
+        safeMode = 'unsafe'
+        sectionNumbers = false
+        trace = false
+        verbose = false
+        workingFolderCurrent = false
+        [markup.asciidocExt.attributes]
     [markup.highlight]
         codeFences = true
         guessSyntax = false
@@ -93,7 +106,7 @@ uglyURLs = false
         ordered = true
 
 # Author’s information
-[author]
+[params.author]
     # Name
     name = "Guillaume Malette"
     # Email
@@ -101,9 +114,11 @@ uglyURLs = false
     # Motto or introduction
     # motto = "Viva La Vida"
     # Avatar
-    avatar = "/icons/apple-touch-icon.png"
     # Personal website, default: baseURL
     website = "https://gmalette.dev"
+[Author]
+    avatar = "/icons/apple-touch-icon.png"
+
     # Twitter
 #    twitter = "gmalette"
 
@@ -147,9 +162,6 @@ uglyURLs = false
     page = ["HTML"]
     home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
-    # Taxonomy
-    taxonomyTerm = ["HTML"]
-    # Taxonomy term
     taxonomy = ["HTML"]
     # Note: https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
 
@@ -1104,7 +1116,7 @@ uglyURLs = false
     ######################################
     # Post Share
 
-    enablePostShare = true
+    enablePostShare = false
 
     displayPostShare = true
     # Note: *global settings*
@@ -1113,7 +1125,7 @@ uglyURLs = false
 
     displayShareOnText = true
 
-    shareOnTwitter = true
+    shareOnTwitter = false
     shareOnFacebook = false
     shareOnLinkedIn = false
     shareOnTelegram = false
@@ -1324,3 +1336,9 @@ uglyURLs = false
     fofVideoMp4 = ""
     # Note: you can leave these two
     #       options empty("")
+
+[security]
+    enableInlineShortcodes = false
+
+    [security.exec]
+        allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$', '^asciidoctor$']

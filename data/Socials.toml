@@ -22,18 +22,10 @@
     weight = 2
 
 [[socials]]
-    id = "mastodon"
-    url = "https://hachyderm.io/@gmalette"
-    icon = "mastodon"
-    rel = "me"
-    title = "Mastodon"
-    weight = 3
-
-[[socials]]
-    id = "twitter"
-    url = "https://twitter.com/gmalette"
-    icon = "twitter"
-    title = "Twitter"
+    id = "bluesky"
+    url = "https://bsky.app/profile/gmalette.dev"
+    icon = "bluesky"
+    title = "Bluesky"
     rel = "external noopener"
-    weight = 4
+    weight = 3
 
